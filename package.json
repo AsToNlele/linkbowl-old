@@ -1,0 +1,18 @@
+{
+  "name": "linkbowl",
+  "version": "1.0.0",
+  "description": "Service similar to linktree",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsToNlele/linkbowl.git"
+  },
+  "author": "Alexandr Celakovsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AsToNlele/linkbowl/issues"
+  },
+  "homepage": "https://github.com/AsToNlele/linkbowl#readme"
+}
