@@ -31,6 +31,18 @@
     "slug": {
       "type": "uid",
       "required": true
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "buttonColor": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "string"
     }
   }
 }

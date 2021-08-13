@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Service similar to linktree",
   "scripts": {
+    "client": "cd frontend && npm run dev",
+    "server": "cd backend && npm run develop",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/AsToNlele/linkbowl/issues"
   },
-  "homepage": "https://github.com/AsToNlele/linkbowl#readme"
+  "homepage": "https://github.com/AsToNlele/linkbowl#readme",
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.14",
+    "concurrently": "^6.2.1"
+  }
 }
