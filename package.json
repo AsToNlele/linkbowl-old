@@ -6,7 +6,10 @@
     "client": "cd frontend && npm run dev",
     "server": "cd backend && npm run develop",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "install-all": "concurrently \"npm install \" \"npm run install-frontend\" \"npm run install-backend\" "
   },
   "repository": {
     "type": "git",
@@ -19,7 +22,6 @@
   },
   "homepage": "https://github.com/AsToNlele/linkbowl#readme",
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.14",
     "concurrently": "^6.2.1"
   }
 }

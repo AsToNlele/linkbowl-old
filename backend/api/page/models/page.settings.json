@@ -43,6 +43,9 @@
     },
     "photo": {
       "type": "string"
+    },
+    "theme": {
+      "type": "json"
     }
   }
 }

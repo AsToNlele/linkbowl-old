@@ -6,12 +6,17 @@ import { useRouter } from 'next/router'
 export default function Page({ page }) {
   const router = useRouter()
   const { slug } = router.query
+  const {theme} = page;
+  console.log(page)
   return (
-    <div
-      style={{
-        backgroundColor: page.backgroundColor,
-      }}
-    >
+   <div>
+    <style jsx global>
+    {`
+        body {
+            background: ${theme.backgroundColor} !important;
+        }
+    `}
+    </style>
       <Container maxW="container.md" centerContent>
         <Image
           borderRadius="full"
@@ -21,16 +26,16 @@ export default function Page({ page }) {
           fallbackSrc="https://via.placeholder.com/100"
           mt={10}
         />
-        <Text fontSize="lg" mt={4}>
+        <Text fontSize="lg" mt={4} color={theme.textColor}>
           @{slug}
         </Text>
-        <Text fontSize="md" mt={4}>
+        <Text fontSize="md" mt={4} color={theme.textColor}>
           {page.Description}
         </Text>
         {page.Button.map((btn) => (
           <Link w="100%" href={btn.Url} key={btn.id} mt={4}>
             <Button
-              colorScheme={page.buttonColor}
+              colorScheme={theme.buttonInnerColor}
               variant="solid"
               w="100%"
               href={btn.Url}
@@ -39,7 +44,7 @@ export default function Page({ page }) {
               borderRadius="10px"
               leftIcon
             >
-              <Text color={page.textColor}>{btn.Text}</Text>
+              <Text color={theme.textColor}>{btn.Text}</Text>
             </Button>
           </Link>
         ))}
