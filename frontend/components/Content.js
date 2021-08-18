@@ -23,17 +23,20 @@ const Content = ({page}) => {
           <Link w="100%" href={btn.Url} key={btn.id} mt={4}>
             <Button
               // colorScheme={theme.buttonInnerColor}
-              backgroundColor="green.300"
+              backgroundColor={theme.buttonInnerColor}
               variant="solid"
               w="100%"
               href={btn.Url}
               py="7"
               border="2px"
-              borderRadius="none"
-              borderColor="green.300"
+              borderRadius={theme.buttonBorderRadius}
+              borderColor={theme.buttonBorderColor}
               leftIcon
+              color={theme.buttonTextColor}
+              _hover={{color:theme.buttonInnerColor, backgroundColor: theme.buttonTextColor}}
+              
             >
-              <Text color={theme.buttonTextColor}>{btn.Text}</Text>
+              {btn.Text}
             </Button>
           </Link>
         ))}
