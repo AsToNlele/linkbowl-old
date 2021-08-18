@@ -1,11 +1,9 @@
 import Head from 'next/head'
 // import styles from '../styles/Home.module.css'
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import Content from '../../components/Content'
 
 export default function Page({ page }) {
-  const router = useRouter()
-  const { slug } = router.query
   const {theme} = page;
   console.log(page)
   return (
@@ -17,37 +15,11 @@ export default function Page({ page }) {
         }
     `}
     </style>
-      <Container maxW="container.md" centerContent>
-        <Image
-          borderRadius="full"
-          boxSize="100px"
-          src={page.photo}
-          objectFit="cover"
-          fallbackSrc="https://via.placeholder.com/100"
-          mt={10}
-        />
-        <Text fontSize="lg" mt={4} color={theme.textColor}>
-          @{slug}
-        </Text>
-        <Text fontSize="md" mt={4} color={theme.textColor}>
-          {page.Description}
-        </Text>
-        {page.Button.map((btn) => (
-          <Link w="100%" href={btn.Url} key={btn.id} mt={4}>
-            <Button
-              colorScheme={theme.buttonInnerColor}
-              variant="solid"
-              w="100%"
-              href={btn.Url}
-              py={7}
-              border="2px"
-              borderRadius="10px"
-              leftIcon
-            >
-              <Text color={theme.textColor}>{btn.Text}</Text>
-            </Button>
-          </Link>
-        ))}
+      <Head>
+        <title>@{page.slug}</title>
+      </Head>
+      <Container maxWidth="50%" centerContent>
+      <Content page={page} />
       </Container>
     </div>
   )

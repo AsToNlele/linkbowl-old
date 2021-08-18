@@ -10,10 +10,10 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import NextLink from 'next/link'
+import Link from 'next/link'
 
 const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+  <Text mt={{ base: 4, md: 0 }} mr={14} display="block">
     {children}
   </Text>
 )
@@ -28,12 +28,13 @@ export const Navbar = () => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1.5rem"
+      padding="1rem"
       bg="white"
       color="black"
+      pt="5"
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={'-.1rem'}>
+        <Heading as="h1" size="md" mr="9" letterSpacing={'-.1rem'}>
           Linktree
         </Heading>
       </Flex>
@@ -49,10 +50,10 @@ export const Navbar = () => {
         <MenuItems>Help</MenuItems>
       </Box>
       <Flex align="center">
-        <Text mr="5">Log in</Text>
-        <Button bg="green.200" color="black">
+        <Link href="/admin"><Text mr="5">Log in</Text></Link>
+        <Link href="/admin"><Button borderRadius="lg" fontSize="sm" fontWeight="semibold" padding="0" height="32px" pl="4" pr="4" bg="green.300" _hover={{background: "green.400"}} color="black">
           SIGN UP FREE
-        </Button>
+        </Button></Link>
       </Flex>
     </Flex>
   )
