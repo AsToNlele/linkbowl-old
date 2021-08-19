@@ -4,22 +4,15 @@ import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
 import Content from '../../components/Content'
 
 export default function Page({ page }) {
-  const {theme} = page;
+  const { theme } = page
   console.log(page)
   return (
-   <div>
-    <style jsx global>
-    {`
-        body {
-            background: ${theme.backgroundColor} !important;
-        }
-    `}
-    </style>
+    <div>
       <Head>
         <title>@{page.slug}</title>
       </Head>
-      <Container maxWidth="50%" centerContent>
-      <Content page={page} />
+      <Container centerContent>
+        <Content page={page} theme={page.theme} />
       </Container>
     </div>
   )
@@ -28,8 +21,6 @@ export default function Page({ page }) {
 export async function getServerSideProps({ query: { slug } }) {
   const res = await fetch(`http://localhost:1337/pages?slug=${slug}`)
   const data = await res.json()
-  console.log('REQUEST!!!')
-  console.log(data)
 
   if (!data) {
     return {

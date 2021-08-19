@@ -58,10 +58,6 @@
       "via": "users",
       "plugin": "users-permissions",
       "configurable": false
-    },
-    "pages": {
-      "via": "users_permissions_user",
-      "collection": "page"
     }
   }
 }

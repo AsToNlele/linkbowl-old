@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import Navbar from '../components/Navbar'
-import {Container, Button, Text, Heading} from '@chakra-ui/react'
+import { Container, Button, Text, Heading } from '@chakra-ui/react'
 
 export default function Home() {
   return (
@@ -15,27 +15,45 @@ export default function Home() {
       </Head>
       <Navbar />
       <Container maxWidth="90ch" textAlign="center">
-      <Heading as="h1" size="3xl" fontWeight="light" style={{paddingTop:"130px"}}>
-      The Only Link You’ll Ever Need
-      </Heading>
-      <Text fontSize="2xl" paddingTop="5">
-      Connect audiences to all of your content with just one link
-      </Text>
-      <Button colorScheme="purple" mt="16" paddingX="8" paddingY="8" fontSize="xl" fontWeight="semibold" borderRadius="2xl">
-        <Link href="/admin">GET STARTED FOR FREE</Link>
-      </Button>
-      <Text paddingTop="4">Already on Linktree? <Link href="/admin"><Text as="ins">Log in</Text></Link></Text>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        <Heading
+          as="h1"
+          size="3xl"
+          fontWeight="light"
+          style={{ paddingTop: '130px' }}
+        >
+          The Only Link You’ll Ever Need
+        </Heading>
+        <Text fontSize="2xl" paddingTop="5">
+          Connect audiences to all of your content with just one link
+        </Text>
+        <Button
+          colorScheme="purple"
+          mt="16"
+          paddingX="8"
+          paddingY="8"
+          fontSize="xl"
+          fontWeight="semibold"
+          borderRadius="2xl"
+        >
+          <Link href="/admin">GET STARTED FOR FREE</Link>
+        </Button>
+        <Text paddingTop="4">
+          Already on Linktree?{' '}
+          <Link href="/admin">
+            <Text as="ins">Log in</Text>
+          </Link>
+        </Text>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </Container>
     </>
   )

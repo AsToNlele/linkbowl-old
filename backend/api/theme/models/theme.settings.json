@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "pages",
+  "collectionName": "themes",
   "info": {
-    "name": "Page",
+    "name": "Theme",
     "description": ""
   },
   "options": {
@@ -15,7 +15,25 @@
     "slug": {
       "type": "uid"
     },
-    "photo": {
+    "textColor": {
+      "type": "string"
+    },
+    "buttonInnerColor": {
+      "type": "string"
+    },
+    "buttonBorderColor": {
+      "type": "string"
+    },
+    "buttonBorderRadius": {
+      "type": "string"
+    },
+    "buttonTextColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "thumbnail": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [
@@ -26,14 +44,6 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
-    },
-    "Button": {
-      "type": "component",
-      "repeatable": true,
-      "component": "category.button"
-    },
-    "theme": {
-      "model": "theme"
     }
   }
 }
