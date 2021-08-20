@@ -20,9 +20,6 @@ const Theme = ({ data, isCurrent, onClickTheme }) => {
         </Box>
         <Text>{data.name}</Text>
       </Center>
-      {/* <Button colorScheme={isCurrent ? 'red' : 'green'} onClick={handleClick}>
-        {data.slug}
-      </Button> */}
     </>
   );
 };
