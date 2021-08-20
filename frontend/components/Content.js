@@ -4,15 +4,6 @@ const Content = ({ page }) => {
   let { theme } = page
   return (
     <>
-      <style jsx global>
-        {`
-          body {
-            background: ${theme && theme.backgroundColor
-              ? theme.backgroundColor
-              : 'white'} !important;
-          }
-        `}
-      </style>
       <Image
         borderRadius="full"
         boxSize="85px"

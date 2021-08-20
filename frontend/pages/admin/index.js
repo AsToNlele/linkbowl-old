@@ -1,7 +1,6 @@
 import { Text, Heading, Button, Container } from '@chakra-ui/react'
 import { useState } from 'react'
 import Content from '../../components/Content'
-import ThemeList from '../../components/ThemeList'
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
@@ -11,7 +10,6 @@ export default function Admin({ pageprop }) {
     <>
       Admin Panel
       <Button>XD</Button>
-      <ThemeList />
       <Container centerContent>
         <Content page={page} />
       </Container>
