@@ -35,7 +35,7 @@ export const Navbar = () => {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="md" mr="9" letterSpacing={'-.1rem'}>
-          Linktree
+         Linkbowl 
         </Heading>
       </Flex>
 

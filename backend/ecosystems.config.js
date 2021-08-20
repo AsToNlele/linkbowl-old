@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'linktree-backend',
+      name: 'linkbowl-backend',
       script: 'npm',
       args: 'start',
       env_development: {

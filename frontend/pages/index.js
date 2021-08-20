@@ -38,7 +38,7 @@ export default function Home() {
           <Link href="/admin">GET STARTED FOR FREE</Link>
         </Button>
         <Text paddingTop="4">
-          Already on Linktree?{' '}
+          Already on Linkbowl?{' '}
           <Link href="/admin">
             <Text as="ins">Log in</Text>
           </Link>
