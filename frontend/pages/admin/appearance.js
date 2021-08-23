@@ -5,6 +5,8 @@ import {
   Flex,
   Box,
   Container,
+  Input,
+  Textarea,
   AspectRatio,
 } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
@@ -33,21 +35,30 @@ export default function Admin({ pageprop, themes }) {
     if (initialRender.current) {
       initialRender.current = false
     } else {
-      fetch(`${API_URL}/pages/${page.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(page),
-      }).then((res) => {
-        if (res.ok) {
-          console.log('success')
-        } else {
-          console.log('fail')
-        }
-      })
     }
   }, [page])
+
+  const handleChange = (e) => {
+    let {name,value} = e.target
+
+    setPage({...page,[name]:value})
+  }
+
+  const handleSubmit = async() => {
+    const res = await fetch(`${API_URL}/pages/${page.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(page),
+    })
+
+    if (res.ok) {
+      console.log('success')
+    } else {
+      console.log('fail')
+    }
+  }
 
   const changeTheme = async (slug) => {
     let filteredTheme = themes.filter((theme) => theme.slug === slug)
@@ -60,6 +71,9 @@ export default function Admin({ pageprop, themes }) {
       <Flex>
         <Box flex='2'>
           <Container centerContent>
+            <Button colorScheme="green" onClick={handleSubmit}>Save</Button>
+            <Input name="title" onChange={handleChange} value={page.title}/>
+            <Textarea name="bio" onChange={handleChange} value={page.bio}/>
             <ThemeList
               themes={themes}
               currentTheme={page.theme.slug}

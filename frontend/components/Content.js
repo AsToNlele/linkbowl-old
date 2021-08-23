@@ -3,14 +3,14 @@ import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
 const Content = ({ page }) => {
   let { theme } = page
   return (
-    <>
+    <>  
       <Image
         borderRadius="full"
         boxSize="85px"
         src={page.photo}
         objectFit="cover"
         fallbackSrc="/placeholder.png"
-        mt={10}
+        mt={20}
       />
       <Text
         fontSize="md"
@@ -19,11 +19,11 @@ const Content = ({ page }) => {
         color={theme && theme.textColor ? theme.textColor : 'black'}
         fontWeight="semibold"
       >
-        @{page.slug}
+        {page.title != "" ? page.title : "@"+page.slug}
       </Text>
-      {/* <Text fontSize="md" mt={4} color={theme.textColor}>
-          {page.Description}
-        </Text> */}
+      <Text fontSize="md" mt={2} color={theme.textColor}>
+          {page.bio}
+        </Text>
       {page.Button.map((btn) => (
         <Link w="100%" href={btn.Url} key={btn.id} mt={4}>
           <Button

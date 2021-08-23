@@ -1,7 +1,9 @@
-import { Text, Heading, Button, Container } from '@chakra-ui/react'
+import { Text, Heading, Button, Container, Flex, Box } from '@chakra-ui/react'
 import { useState } from 'react'
 import Content from '../../components/Content'
-import {API_URL} from '../../config/index'
+import { DeviceFrameset } from 'react-device-frameset'
+import 'react-device-frameset/lib/css/marvel-devices.min.css'
+import { API_URL } from '../../config/index'
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
@@ -10,10 +12,25 @@ export default function Admin({ pageprop }) {
   return (
     <>
       Admin Panel
-      <Button>XD</Button>
-      <Container centerContent>
-        <Content page={page} />
-      </Container>
+      <Flex>
+        <Box flex='2'>
+          
+        </Box>
+        <Box flex='1'>
+          <Box style={{ transform: 'scale(0.5)', transformOrigin: 'top' }}>
+            <DeviceFrameset device='iPhone X' color='gold'>
+              <Container
+                centerContent
+                backgroundColor={page.theme.backgroundColor}
+                height='100%'
+                width='100%'
+              >
+                <Content page={page} />
+              </Container>
+            </DeviceFrameset>
+          </Box>
+        </Box>
+      </Flex>
     </>
   )
 }
