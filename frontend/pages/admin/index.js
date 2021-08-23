@@ -1,6 +1,7 @@
 import { Text, Heading, Button, Container } from '@chakra-ui/react'
 import { useState } from 'react'
 import Content from '../../components/Content'
+import {API_URL} from '../../config/index'
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
@@ -18,7 +19,7 @@ export default function Admin({ pageprop }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:1337/pages?slug=aston`)
+  const res = await fetch(`${API_URL}/pages?slug=aston`)
   const data = await res.json()
 
   if (!data) {

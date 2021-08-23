@@ -12,6 +12,7 @@ import Content from '../../components/Content';
 import ThemeList from '../../components/ThemeList';
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
+import {API_URL} from '../../config/index'
 
 export default function Admin({ pageprop, themes }) {
   const [page, setPage] = useState(pageprop);
@@ -52,10 +53,10 @@ export default function Admin({ pageprop, themes }) {
 }
 
 export async function getServerSideProps() {
-  const pageRes = await fetch(`http://localhost:1337/pages?slug=aston`);
+  const pageRes = await fetch(`${API_URL}/pages?slug=aston`);
   const pageData = await pageRes.json();
 
-  const themeRes = await fetch(`http://localhost:1337/themes`);
+  const themeRes = await fetch(`${API_URL}/themes`);
   const themeData = await themeRes.json();
 
   if (!pageData || !themeData) {
