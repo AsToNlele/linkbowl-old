@@ -15,15 +15,36 @@ import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import {API_URL} from '../../config/index'
 
 export default function Admin({ pageprop, themes }) {
-  const [page, setPage] = useState(pageprop);
+  const [page, setPage] = useState({
+    photo: pageprop.photo,
+    slug: pageprop.slug,
+    Button: pageprop.Button,
+    theme: pageprop.theme,
+    title: pageprop.title,
+    bio: pageprop.bio,
+    id: pageprop.id
+  });
   console.log(page);
   console.log(themes);
 
-  const changeTheme = (slug) => {
+  const changeTheme = async (slug) => {
     let filteredTheme = themes.filter((theme) => theme.slug === slug);
-    let tempPage = { ...page };
-    tempPage.theme = filteredTheme[0];
-    setPage(tempPage);
+    setPage({...page,theme:filteredTheme[0]})
+    const res = await fetch(`${API_URL}/pages/${page.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(page)
+    })
+
+    if(res.ok) {
+      console.log("success")
+    }
+    else {
+      console.log("fail")
+    }
+    
   };
 
   return (
