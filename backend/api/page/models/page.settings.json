@@ -34,6 +34,12 @@
     },
     "theme": {
       "model": "theme"
+    },
+    "title": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
     }
   }
 }
