@@ -1,4 +1,4 @@
-import { Flex,Center, Button, Box, Wrap, WrapItem, Image, Text, AspectRatio} from '@chakra-ui/react';
+import { Center,  Box, Wrap, WrapItem, Image, Text} from '@chakra-ui/react';
 
 const Theme = ({ data, isCurrent, onClickTheme }) => {
   let handleClick = () => {
