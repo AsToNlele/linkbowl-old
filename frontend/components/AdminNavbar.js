@@ -55,7 +55,7 @@ export const AdminNavbar = ({links}) => {
         <MenuItems url="/admin/appearance">Appearance</MenuItems>
       </Box>
       <Flex align="center">
-        <Text fontWeight="bold" fontSize="sm">My Linkbowl</Text><Text fontSize="sm" pl="2" pr="4"><a href="https://linkbowl.aston.dev/aston" target="_blank" style={{textDecoration:"underline"}}>https://linkbowl.aston.dev/aston</a></Text>
+        <Text fontWeight="bold" fontSize="sm">My Linkbowl</Text><Text fontSize="sm" pl="2" pr="4"><a href="https://linkbowl.aston.dev/aston" target="_blank" rel="noreferrer" style={{textDecoration:"underline"}}>https://linkbowl.aston.dev/aston</a></Text>
         <Link href="/admin"><Button borderRadius="lg" fontSize="sm" fontWeight="light" padding="0" height="32px" pl="4" pr="4" bg="transparent" border="1px solid lightgray" borderRadius="md" _hover={{background: "lightgray"}} color="black">
           Share
         </Button></Link>
