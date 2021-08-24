@@ -74,9 +74,9 @@ export const AdminNavbar = ({ links }) => {
             https://linkbowl.aston.dev/aston
           </a>
         </Text>
-        <Link href='/admin'>
+        <Link href='#'>
           <Button
-            borderRadius='lg'
+            borderRadius='md'
             fontSize='sm'
             fontWeight='light'
             padding='0'
@@ -85,7 +85,6 @@ export const AdminNavbar = ({ links }) => {
             pr='4'
             bg='transparent'
             border='1px solid lightgray'
-            borderRadius='md'
             _hover={{ background: 'lightgray' }}
             color='#000'
           >
