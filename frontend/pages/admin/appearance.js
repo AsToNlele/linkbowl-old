@@ -133,9 +133,6 @@ export default function Admin({ pageprop, themes }) {
                   <Button>Remove</Button>
                 </Grid>
               </Box>
-              <Button colorScheme='green' onClick={handleSubmit} display='none'>
-                Save
-              </Button>
               <Input
                 name='title'
                 onChange={handleChange}
@@ -150,6 +147,9 @@ export default function Admin({ pageprop, themes }) {
                 placeholder='Bio'
                 mt='4'
               />
+              <Button colorScheme='green' onClick={handleSubmit} mt='4'>
+                Save
+              </Button>
             </Box>
             <Text
               fontSize='xl'
