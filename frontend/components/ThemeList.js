@@ -30,7 +30,6 @@ const ThemeList = ({ themes, currentTheme, onChange }) => {
   };
   return (
     <>
-      <div>Theme List!</div>
       <Wrap spacing="20px">
       {themes.map((theme) => {
         let curr = false;

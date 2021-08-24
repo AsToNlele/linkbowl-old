@@ -1,4 +1,5 @@
 import { Text, Heading, Button, Container, Flex, Box } from '@chakra-ui/react'
+import AdminNavbar from '../../components/AdminNavbar'
 import { useState } from 'react'
 import Content from '../../components/Content'
 import { DeviceFrameset } from 'react-device-frameset'
@@ -11,7 +12,7 @@ export default function Admin({ pageprop }) {
 
   return (
     <>
-      Admin Panel
+    <AdminNavbar/>
       <Flex>
         <Box flex='2'>
           

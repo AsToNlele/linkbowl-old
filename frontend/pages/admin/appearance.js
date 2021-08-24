@@ -7,8 +7,10 @@ import {
   Container,
   Input,
   Textarea,
-  AspectRatio,
+  Image,
+  Grid,
 } from '@chakra-ui/react'
+import AdminNavbar from '../../components/AdminNavbar'
 import { useState, useEffect, useRef } from 'react'
 import Content from '../../components/Content'
 import ThemeList from '../../components/ThemeList'
@@ -39,12 +41,12 @@ export default function Admin({ pageprop, themes }) {
   }, [page])
 
   const handleChange = (e) => {
-    let {name,value} = e.target
+    let { name, value } = e.target
 
-    setPage({...page,[name]:value})
+    setPage({ ...page, [name]: value })
   }
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     const res = await fetch(`${API_URL}/pages/${page.id}`, {
       method: 'PUT',
       headers: {
@@ -67,23 +69,110 @@ export default function Admin({ pageprop, themes }) {
 
   return (
     <>
-      Admin Panel
-      <Flex>
-        <Box flex='2'>
-          <Container centerContent>
-            <Button colorScheme="green" onClick={handleSubmit}>Save</Button>
-            <Input name="title" onChange={handleChange} value={page.title}/>
-            <Textarea name="bio" onChange={handleChange} value={page.bio}/>
-            <ThemeList
-              themes={themes}
-              currentTheme={page.theme.slug}
-              onChange={changeTheme}
-            />
+      <style jsx global>{`
+        body {
+          background: #f5f6f8 !important;
+        }
+      `}</style>
+      <AdminNavbar />
+      <Flex height='calc(100vh - 68px)' backgroundColor='lightgray'>
+        <Box
+          flex='2'
+          css={{
+            overflowY: 'scroll',
+            '&::-webkit-scrollbar': {
+              width: '10px',
+              paddingRight: '10px',
+            },
+
+            /* Track */
+            '&::-webkit-scrollbar-track': {
+              background: '#f5f6f8',
+            },
+
+            /* Handle */
+            '&::-webkit-scrollbar-thumb': {
+              background: '#888',
+            },
+
+            /* Handle on hover */
+            '&::-webkit-scrollbar-thumb:hover': {
+              background: '#555',
+            },
+            borderRight: '1px solid gray',
+          }}
+        >
+          <Container centerContent maxW="container.md">
+            <Text
+              fontSize='xl'
+              fontWeight='bold'
+              textAlign='left'
+              width='100%'
+              mt='6'
+              mb='4'
+            >
+              Profile
+            </Text>
+            <Box backgroundColor='white' p='4' width='100%'>
+              <Box display='flex'>
+                <Image
+                  borderRadius='full'
+                  fallbackSrc='/placeholder.png'
+                  height='96px'
+                  width='96px'
+                  mr='4'
+                />
+
+                <Grid
+                  templateColumns='repeat(auto-fit, minmax(150px,1fr))'
+                  width='100%'
+                  alignItems='center'
+                  gap='2'
+                >
+                  <Button colorScheme='purple'>Pick an image</Button>
+                  <Button>Remove</Button>
+                </Grid>
+              </Box>
+              <Button colorScheme='green' onClick={handleSubmit} display='none'>
+                Save
+              </Button>
+              <Input
+                name='title'
+                onChange={handleChange}
+                value={page.title}
+                placeholder='Title'
+                mt='4'
+              />
+              <Textarea
+                name='bio'
+                onChange={handleChange}
+                value={page.bio}
+                placeholder='Bio'
+                mt='4'
+              />
+            </Box>
+            <Text
+              fontSize='xl'
+              fontWeight='bold'
+              textAlign='left'
+              width='100%'
+              mt='6'
+              mb='4'
+            >
+              Themes
+            </Text>
+            <Box backgroundColor='white' p='4' width='100%' display="flex" alignItems="center">
+              <ThemeList
+                themes={themes}
+                currentTheme={page.theme.slug}
+                onChange={changeTheme}
+              />
+            </Box>
           </Container>
         </Box>
 
         <Box flex='1'>
-          <Box style={{ transform: 'scale(0.5)', transformOrigin: 'top' }}>
+          <Container style={{ transform: 'scale(0.5)', transformOrigin: 'top' }} centerContent>
             <DeviceFrameset device='iPhone X' color='gold'>
               <Container
                 centerContent
@@ -94,7 +183,7 @@ export default function Admin({ pageprop, themes }) {
                 <Content page={page} />
               </Container>
             </DeviceFrameset>
-          </Box>
+          </Container>
         </Box>
       </Flex>
     </>

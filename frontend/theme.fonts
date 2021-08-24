@@ -4,5 +4,8 @@ const theme = extendTheme({
     heading: "Karla",
     body: "Karla",
   },
+  colors: {
+    lightgray: '#f5f6f8',
+  },
 })
 export default theme

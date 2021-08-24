@@ -19,7 +19,7 @@ const MenuItems = ({url,children }) => (
   </Link>
 )
 
-export const Navbar = ({links}) => {
+export const AdminNavbar = ({links}) => {
   const [show, setShow] = useState(false)
   const handleToggle = () => setShow(!show)
 
@@ -33,6 +33,11 @@ export const Navbar = ({links}) => {
       bg="white"
       color="black"
       pt="5"
+      overflow="hidden"
+      position="sticky"
+      top="0"
+      width="100%"
+      zIndex="100"
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="md" mr="9" letterSpacing={'-.1rem'}>
@@ -46,18 +51,17 @@ export const Navbar = ({links}) => {
         alignItems="center"
         flexGrow={1}
       >
-        <MenuItems url="#">Blog</MenuItems>
-        <MenuItems url="#">Pricing</MenuItems>
-        <MenuItems url="#">Help</MenuItems>
+        <MenuItems url="/admin">Links</MenuItems>
+        <MenuItems url="/admin/appearance">Appearance</MenuItems>
       </Box>
       <Flex align="center">
-        <Link href="/admin"><Text mr="5">Log in</Text></Link>
-        <Link href="/admin"><Button borderRadius="lg" fontSize="sm" fontWeight="semibold" padding="0" height="32px" pl="4" pr="4" bg="green.300" _hover={{background: "green.400"}} color="black">
-          SIGN UP FREE
+        <Text fontWeight="bold" fontSize="sm">My Linkbowl</Text><Text fontSize="sm" pl="2" pr="4"><a href="https://linkbowl.aston.dev/aston" target="_blank" style={{textDecoration:"underline"}}>https://linkbowl.aston.dev/aston</a></Text>
+        <Link href="/admin"><Button borderRadius="lg" fontSize="sm" fontWeight="light" padding="0" height="32px" pl="4" pr="4" bg="transparent" border="1px solid lightgray" borderRadius="md" _hover={{background: "lightgray"}} color="black">
+          Share
         </Button></Link>
       </Flex>
     </Flex>
   )
 }
 
-export default Navbar
+export default AdminNavbar
