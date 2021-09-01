@@ -83,16 +83,17 @@ const LinkButton = ({ id, text, url, index, moveCard }) => {
       <Box
         p='2'
         display='flex'
-        borderRight='1px solid black'
+        borderRight='1px solid'
+        borderColor="gray"
         ref={ref}
         style={handleStyle}
         alignItems='center'
         justifyContent='center'
       >
-        <DragHandleIcon />
+        <DragHandleIcon color="gray"/>
       </Box>
       <Box p='4'>
-        <Text>{text}</Text>
+        <Text fontWeight="bold">{text}</Text>
         <Text>{url}</Text>
       </Box>
     </Box>
