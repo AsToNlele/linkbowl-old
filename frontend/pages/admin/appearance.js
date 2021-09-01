@@ -10,10 +10,10 @@ import {
   Image,
   Grid,
 } from '@chakra-ui/react'
-import AdminNavbar from '../../components/AdminNavbar'
+import AdminNavbar from '../../components/Layout/AdminNavbar'
 import { useState, useEffect, useRef } from 'react'
-import Content from '../../components/Content'
-import ThemeList from '../../components/ThemeList'
+import Display from '../../components/Display'
+import ThemeList from '../../components/ThemeList/ThemeList'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import { API_URL } from '../../config/index'
@@ -180,7 +180,7 @@ export default function Admin({ pageprop, themes }) {
                 height='100%'
                 width='100%'
               >
-                <Content page={page} />
+                <Display page={page} />
               </Container>
             </DeviceFrameset>
           </Container>

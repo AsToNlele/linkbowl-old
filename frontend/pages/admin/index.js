@@ -7,10 +7,10 @@ import {
   Flex,
   Box,
 } from '@chakra-ui/react'
-import AdminNavbar from '@/components/AdminNavbar'
+import AdminNavbar from '@/components/Layout/AdminNavbar'
 import { useState } from 'react'
-import Content from '@/components/Content'
-import LinkButtonList from '@/components/LinkButtonList'
+import Display from '@/components/Display'
+import LinkButtonList from '@/components/LinkButton/LinkButtonList'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import { API_URL } from '../../config/index'
@@ -71,7 +71,7 @@ export default function Admin({ pageprop }) {
                 height='100%'
                 width='100%'
               >
-                <Content page={page} />
+                <Display page={page} />
               </Container>
             </DeviceFrameset>
           </Box>

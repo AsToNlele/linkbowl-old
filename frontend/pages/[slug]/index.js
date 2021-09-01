@@ -1,7 +1,7 @@
 import Head from 'next/head'
 // import styles from '../styles/Home.module.css'
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
-import Content from '../../components/Content'
+import Display from '../../components/Display'
 import { API_URL } from '../../config/index'
 
 export default function Page({ page }) {
@@ -18,7 +18,7 @@ export default function Page({ page }) {
         <title>@{page.slug}</title>
       </Head>
       <Container centerContent>
-        <Content page={page} theme={page.theme} />
+        <Display page={page} theme={page.theme} />
       </Container>
     </div>
   )

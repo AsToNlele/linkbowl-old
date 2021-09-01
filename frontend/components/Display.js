@@ -1,6 +1,6 @@
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
 
-const Content = ({ page }) => {
+const Display = ({ page }) => {
   let { theme } = page
   return (
     <>  
@@ -71,4 +71,4 @@ const Content = ({ page }) => {
   )
 }
 
-export default Content
+export default Display 
