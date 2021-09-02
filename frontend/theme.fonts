@@ -6,6 +6,7 @@ const theme = extendTheme({
   },
   colors: {
     lightgray: '#f5f6f8',
+    customgray: '#acb5bf',
   },
 })
 export default theme

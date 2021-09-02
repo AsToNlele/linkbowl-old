@@ -7,7 +7,7 @@ const Theme = ({ data, isCurrent, onClickTheme }) => {
   return (
     <>
       <Center flexDirection="column" onClick={handleClick} display="inline-block" textAlign="center">
-        <Box maxW="150px" p="1" border="2px" borderColor={isCurrent ? "gray" : "transparent"} borderRadius="5px" overflow="hidden">
+        <Box maxW="150px" p="1" border="2px" borderColor={isCurrent ? "customgray" : "transparent"} borderRadius="5px" overflow="hidden">
           <Image
             width='100%'
             fallbackSrc='https://via.placeholder.com/240x340'
