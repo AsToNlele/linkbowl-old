@@ -7,56 +7,26 @@ import update from 'immutability-helper'
 const style = {}
 const LinkButtonList = ({ buttons, onChange }) => {
   {
-    // const [cards, setCards] = useState([
-    //   {
-    //     id: 1,
-    //     text: 'Instagram',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 2,
-    //     text: 'Facebook',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 3,
-    //     text: 'Reddit',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 4,
-    //     text: 'Twitter',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 5,
-    //     text: 'Bazos',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 6,
-    //     text: 'Portfolio',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 7,
-    //     text: 'Tamto',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 8,
-    //     text: 'Hento',
-    //     url: 'https://instagram.com',
-    //   },
-    //   {
-    //     id: 9,
-    //     text: 'lmao',
-    //     url: 'https://instagram.com',
-    //   },
-    // ])
-
     const handleButtonChange = (buttonsCopy) => {
       onChange(buttonsCopy)
+    }
+
+    const handleDelete = key => {
+      let btns = buttons
+      btns = btns.filter(btn => btn.id !== key)
+      console.log(key)
+      console.log(btns)
+      handleButtonChange(btns)
+    }
+
+    const handleSwitchChange = key => {
+      let btns = buttons
+      btns.map(btn => {
+        if(btn.id === key){
+        btn.Enabled = !btn.Enabled
+        }
+      })
+      handleButtonChange(btns)
     }
 
     const moveCard = useCallback(
@@ -70,11 +40,26 @@ const LinkButtonList = ({ buttons, onChange }) => {
           ],
         })
 
-        console.log(buttonsCopy)
+        // console.log(buttonsCopy)
         handleButtonChange(buttonsCopy)
       },
       [buttons]
     )
+
+
+    const handleContentChange = (obj) => {
+      let btns = buttons;
+      // console.log(btns)
+      btns.map(btn => {
+        if(btn.id === obj.key){
+          btn.Text = obj.text
+          btn.Url = obj.url
+        }
+      })
+      handleButtonChange(btns)
+    }
+
+    
 
     return (
       <Box w='100%'>
@@ -82,12 +67,16 @@ const LinkButtonList = ({ buttons, onChange }) => {
           <div>
             {buttons.map((card, index) => (
               <LinkButton
-                key={card._id}
+                key={card.id}
                 index={index}
-                id={card._id}
+                id={card.id}
                 text={card.Text}
                 url={card.Url}
+                enabled={card.Enabled}
                 moveCard={moveCard}
+                onContentChange={handleContentChange}
+                onSwitch={handleSwitchChange}
+                onDelete={handleDelete}
               />
             ))}
           </div>

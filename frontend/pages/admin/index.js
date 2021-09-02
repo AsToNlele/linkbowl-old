@@ -1,11 +1,11 @@
 import {
   Center,
   Text,
-  Heading,
   Button,
   Container,
   Flex,
   Box,
+  Grid,
 } from '@chakra-ui/react'
 import AdminNavbar from '@/components/Layout/AdminNavbar'
 import { useState } from 'react'
@@ -14,13 +14,44 @@ import LinkButtonList from '@/components/LinkButton/LinkButtonList'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import { API_URL } from '../../config/index'
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
   console.log(page)
 
+  const handleSubmit = async () => {
+    let btns = page.Button
+    btns.forEach(function(btn){ delete btn.id; delete btn._id });
+    const res = await fetch(`${API_URL}/pages/${page.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({"Button":btns}),
+    })
+
+    if (res.ok) {
+      console.log('success')
+    } else {
+      console.log('fail')
+    }
+  }
+
   const changeButtons = async (buttons) => {
     setPage({ ...page, Button: buttons })
+  }
+
+  const addLink = () => {
+    let btns = page.Button;
+    let btn = {
+      Text: "New Title",
+      Url: "https://linkbowl.aston.dev",
+      id: uuidv4()
+    }
+    btns.unshift(btn)
+
+    setPage({...page, Button: btns})
   }
 
   return (
@@ -59,6 +90,17 @@ export default function Admin({ pageprop }) {
           }}
         >
           <Container centerContent maxW='container.md'>
+            <Grid
+              templateColumns='repeat(auto-fit, minmax(150px,1fr))'
+              width='100%'
+              alignItems='center'
+              gap='2'
+              mt="14"
+              mb="8"
+            >
+              <Button colorScheme='purple' onClick={addLink}>Add New Link</Button>
+              <Button colorScheme='green' onClick={handleSubmit}>Save</Button>
+            </Grid>
             <LinkButtonList buttons={page.Button} onChange={changeButtons} />
           </Container>
         </Box>

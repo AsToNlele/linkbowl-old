@@ -1,7 +1,8 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import { Box, Text } from '@chakra-ui/react'
-import { DragHandleIcon } from '@chakra-ui/icons'
+import { Box, Text, Input, IconButton, Switch } from '@chakra-ui/react'
+import { DragHandleIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
+import { createRef } from 'react'
 
 const handleStyle = {
   cursor: 'move',
@@ -11,7 +12,7 @@ const ItemTypes = {
   CARD: 'card',
 }
 
-const LinkButton = ({ id, text, url, index, moveCard }) => {
+const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, onDelete, onSwitch }) => {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -68,6 +69,37 @@ const LinkButton = ({ id, text, url, index, moveCard }) => {
       isDragging: monitor.isDragging(),
     }),
   })
+
+  const [showTitle, setShowTitle] = useState(false)
+  const [showURL, setShowURL] = useState(false)
+
+  const inputTitleRef = createRef()
+  const inputURLRef = createRef()
+
+  const handleChange = () => {
+    onContentChange({ key: id,text: inputTitleRef.current.value, url: inputURLRef.current.value})
+  }
+
+  const flipSwitch = () => {
+    onSwitch(id)
+  }
+
+  const deleteButton = () => {
+    onDelete(id)
+  }
+
+  useEffect(() => {
+    if (showTitle) {
+      inputTitleRef.current.focus()
+    }
+  }, [showTitle])
+
+  useEffect(() => {
+    if (showURL) {
+      inputURLRef.current.focus()
+    }
+  }, [showURL])
+
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
   return (
@@ -79,24 +111,68 @@ const LinkButton = ({ id, text, url, index, moveCard }) => {
       ref={preview}
       style={{ opacity }}
       data-handler-id={handlerId}
+      boxShadow='0px 2px 0px 0px #acb5bf'
     >
       <Box
         p='2'
         display='flex'
         borderRight='1px solid'
-        borderColor="gray"
+        borderColor='customgray'
         ref={ref}
         style={handleStyle}
         alignItems='center'
         justifyContent='center'
       >
-        <DragHandleIcon color="gray"/>
+        <DragHandleIcon color='customgray' />
       </Box>
-      <Box p='4'>
-        <Text fontWeight="bold">{text}</Text>
-        <Text>{url}</Text>
+      <Box p='4' width='100%'>
+        <Box fontWeight='bold'>
+          <Text display={showTitle ? 'none' : 'inline-block'}>{text != '' ? text : 'Title'}</Text>
+          <Input
+            display={!showTitle ? 'none' : 'inline'}
+            variant='unstyled'
+            placeholder='Title'
+            value={text}
+            ref={inputTitleRef}
+            onBlur={() => setShowTitle(false)}
+            py='2'
+            fontWeight='bold'
+            name="text"
+            onChange={handleChange}
+          />
+          <IconButton
+            onClick={() => setShowTitle(true)}
+            variant='unstyled'
+            icon={<EditIcon />}
+            display={showTitle ? 'none' : 'inline-block'}
+          />
+        </Box>
+        <Box>
+          <Text display={showURL ? 'none' : 'inline'}>{url != '' ? url : 'Link'}</Text>
+          <IconButton
+            onClick={() => setShowURL(true)}
+            variant='unstyled'
+            icon={<EditIcon />}
+            display={showURL ? 'none' : 'inline-block'}
+          />
+          <Input
+            display={!showURL ? 'none' : 'inline'}
+            variant='unstyled'
+            placeholder='Link'
+            value={url}
+            ref={inputURLRef}
+            w='100%'
+            onBlur={() => setShowURL(false)}
+            py='2'
+            name="url"
+            onChange={handleChange}
+          />
+        </Box>
       </Box>
-    </Box>
+
+
+  <Box display="flex" flexDirection="column" p="3" alignItems="center" justifyContent="space-between"><Switch colorScheme="green" onChange={flipSwitch} isChecked={enabled} /><IconButton onClick={deleteButton} variant="unstyled" icon={<DeleteIcon color="red" />} /></Box>
+</Box>
   )
 }
 
