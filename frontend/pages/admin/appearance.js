@@ -14,6 +14,7 @@ import AdminNavbar from '../../components/Layout/AdminNavbar'
 import { useState, useEffect, useRef } from 'react'
 import Display from '../../components/Display'
 import ThemeList from '../../components/ThemeList/ThemeList'
+import ImageUpload from '@/components/ImageUpload'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import { API_URL } from '../../config/index'
@@ -28,6 +29,7 @@ export default function Admin({ pageprop, themes }) {
     bio: pageprop.bio,
     id: pageprop.id,
   })
+
   console.log(page)
   console.log(themes)
 
@@ -39,6 +41,24 @@ export default function Admin({ pageprop, themes }) {
     } else {
     }
   }, [page])
+
+  const handleImageUploaded = async () => {
+    const res = await fetch(`${API_URL}/pages/${page.id}`)
+    const data = await res.json()
+    console.log(data)
+    setPage({ ...page, photo: data.photo })
+  }
+
+  const handleImageRemoval = async () => {
+    const res = await fetch(`${API_URL}/upload/files/${page.photo.id}`, {
+      method: 'DELETE',
+    })
+    let data = await res.json()
+    console.log(data)
+    if (data) {
+      handleImageUploaded()
+    }
+  }
 
   const handleChange = (e) => {
     let { name, value } = e.target
@@ -102,7 +122,7 @@ export default function Admin({ pageprop, themes }) {
             borderRight: '1px solid gray',
           }}
         >
-          <Container centerContent maxW="container.md">
+          <Container centerContent maxW='container.md'>
             <Text
               fontSize='xl'
               fontWeight='bold'
@@ -121,6 +141,7 @@ export default function Admin({ pageprop, themes }) {
                   height='96px'
                   width='96px'
                   mr='4'
+                  src={page.photo ? `${API_URL}${page.photo.url}` : null}
                 />
 
                 <Grid
@@ -129,8 +150,13 @@ export default function Admin({ pageprop, themes }) {
                   alignItems='center'
                   gap='2'
                 >
-                  <Button colorScheme='purple'>Pick an image</Button>
-                  <Button>Remove</Button>
+                  <ImageUpload
+                    pageId={page.id}
+                    imageUploaded={handleImageUploaded}
+                  />
+                  <Button colorScheme='red' onClick={handleImageRemoval}>
+                    Remove
+                  </Button>
                 </Grid>
               </Box>
               <Input
@@ -161,7 +187,13 @@ export default function Admin({ pageprop, themes }) {
             >
               Themes
             </Text>
-            <Box backgroundColor='white' p='4' width='100%' display="flex" alignItems="center">
+            <Box
+              backgroundColor='white'
+              p='4'
+              width='100%'
+              display='flex'
+              alignItems='center'
+            >
               <ThemeList
                 themes={themes}
                 currentTheme={page.theme.slug}
@@ -172,7 +204,10 @@ export default function Admin({ pageprop, themes }) {
         </Box>
 
         <Box flex='1'>
-          <Container style={{ transform: 'scale(0.5)', transformOrigin: 'top' }} centerContent>
+          <Container
+            style={{ transform: 'scale(0.5)', transformOrigin: 'top' }}
+            centerContent
+          >
             <DeviceFrameset device='iPhone X' color='gold'>
               <Container
                 centerContent

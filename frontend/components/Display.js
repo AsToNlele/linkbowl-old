@@ -1,4 +1,5 @@
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
+import {API_URL} from '../config/index'
 
 const Display = ({ page }) => {
   let { theme } = page
@@ -7,7 +8,7 @@ const Display = ({ page }) => {
       <Image
         borderRadius="full"
         boxSize="85px"
-        src={page.photo}
+        src={page.photo ? `${API_URL}${page.photo.url}` : null}
         objectFit="cover"
         fallbackSrc="/placeholder.png"
         mt={20}
