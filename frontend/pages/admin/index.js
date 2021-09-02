@@ -22,7 +22,7 @@ export default function Admin({ pageprop }) {
 
   const handleSubmit = async () => {
     let btns = page.Button
-    btns.forEach(function(btn){ delete btn.id; delete btn._id });
+    // btns.forEach(function(btn){ delete btn.id; delete btn._id });
     const res = await fetch(`${API_URL}/pages/${page.id}`, {
       method: 'PUT',
       headers: {
@@ -33,6 +33,7 @@ export default function Admin({ pageprop }) {
 
     if (res.ok) {
       console.log('success')
+      console.log(page)
     } else {
       console.log('fail')
     }
