@@ -1,5 +1,5 @@
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
-import {API_URL} from '../config/index'
+import {API_URL} from '@/config/index'
 
 const Display = ({ page }) => {
   let { theme } = page

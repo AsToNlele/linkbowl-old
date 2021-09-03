@@ -1,6 +1,6 @@
 import { useState,useRef, createRef } from 'react'
 import { Button } from '@chakra-ui/react'
-import { API_URL } from '../config/index'
+import { API_URL } from '@/config/index'
 
 const ImageUpload = ({ pageId, imageUploaded }) => {
 

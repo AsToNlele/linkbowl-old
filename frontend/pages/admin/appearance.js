@@ -10,14 +10,14 @@ import {
   Image,
   Grid,
 } from '@chakra-ui/react'
-import AdminNavbar from '../../components/Layout/AdminNavbar'
+import AdminNavbar from '@/components/Layout/AdminNavbar'
 import { useState, useEffect, useRef } from 'react'
-import Display from '../../components/Display'
-import ThemeList from '../../components/ThemeList/ThemeList'
+import Display from '@/components/Display'
+import ThemeList from '@/components/ThemeList/ThemeList'
 import ImageUpload from '@/components/ImageUpload'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
-import { API_URL } from '../../config/index'
+import { API_URL } from '@/config/index'
 
 export default function Admin({ pageprop, themes }) {
   const [page, setPage] = useState({

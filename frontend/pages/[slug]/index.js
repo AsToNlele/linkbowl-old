@@ -1,8 +1,7 @@
 import Head from 'next/head'
-// import styles from '../styles/Home.module.css'
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
-import Display from '../../components/Display'
-import { API_URL } from '../../config/index'
+import Display from '@/components/Display'
+import { API_URL } from '@/config/index'
 
 export default function Page({ page }) {
   const { theme } = page
