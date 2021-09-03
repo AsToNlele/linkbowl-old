@@ -31,7 +31,7 @@ const ThemeList = ({ themes, currentTheme, onChange }) => {
   return (
     <>
       <Wrap spacing="20px">
-      {themes.map((theme) => {
+      {themes.length ? themes?.map((theme) => {
         let curr = false;
         if (theme.slug === currentTheme) curr = true;
         return (
@@ -45,7 +45,7 @@ const ThemeList = ({ themes, currentTheme, onChange }) => {
           />
           </WrapItem>
         );
-      })}
+      }): ''}
       </Wrap>
     </>
   );
