@@ -26,7 +26,7 @@ const Display = ({ page }) => {
           {page.bio}
         </Text>
       {page.Button.map((btn) => (
-        <Link w="100%" href={btn.Url} key={btn.id} mt={4} display={btn.Enabled ? 'block' : 'none'}>
+        <a style={{width:"100%",marginTop:"10px", display: btn.Enabled ? 'block' : 'none'}} href={btn.Url} target="_blank" key={btn.id}>
           <Button
             // colorScheme={theme.buttonInnerColor}
             backgroundColor={
@@ -66,7 +66,7 @@ const Display = ({ page }) => {
           >
             {btn.Text}
           </Button>
-        </Link>
+        </a>
       ))}
     </>
   )
