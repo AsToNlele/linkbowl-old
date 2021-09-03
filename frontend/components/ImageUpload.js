@@ -1,6 +1,7 @@
 import { useState,useRef, createRef } from 'react'
 import { Button } from '@chakra-ui/react'
 import { API_URL } from '@/config/index'
+import { strapiAxios } from '@/utils/axios'
 
 const ImageUpload = ({ pageId, imageUploaded }) => {
 
@@ -15,14 +16,9 @@ const ImageUpload = ({ pageId, imageUploaded }) => {
     formData.append('ref', 'page')
     formData.append('refId', pageId)
     formData.append('field', 'photo')
-    const res = await fetch(`${API_URL}/upload`, {
-      method: 'POST',
-      body: formData,
-    })
 
-    if (res.ok) {
-      console.log('success')
-      console.log(res)
+    const res = await strapiAxios().post(`/upload`,formData)
+    if(res.status === 200){
       imageUploaded()
     }
   }

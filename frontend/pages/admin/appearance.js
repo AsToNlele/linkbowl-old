@@ -17,6 +17,7 @@ import ThemeList from '@/components/ThemeList/ThemeList'
 import ImageUpload from '@/components/ImageUpload'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
+import { strapiAxios } from '@/utils/axios'
 import { API_URL } from '@/config/index'
 
 export default function Admin({ pageprop, themes }) {
@@ -43,17 +44,17 @@ export default function Admin({ pageprop, themes }) {
   }, [page])
 
   const handleImageUploaded = async () => {
-    const res = await fetch(`${API_URL}/pages/${page.id}`)
-    const data = await res.json()
+    const data = await strapiAxios()
+      .get(`/pages/${page.id}`)
+      .then((res) => res.data)
     console.log(data)
     setPage({ ...page, photo: data.photo })
   }
 
   const handleImageRemoval = async () => {
-    const res = await fetch(`${API_URL}/upload/files/${page.photo.id}`, {
-      method: 'DELETE',
-    })
-    let data = await res.json()
+    const data = await strapiAxios()
+      .delete(`/upload/files/${page.photo.id}`)
+      .then((res) => res.data)
     console.log(data)
     if (data) {
       handleImageUploaded()
@@ -62,24 +63,15 @@ export default function Admin({ pageprop, themes }) {
 
   const handleChange = (e) => {
     let { name, value } = e.target
-
     setPage({ ...page, [name]: value })
   }
 
   const handleSubmit = async () => {
-    const res = await fetch(`${API_URL}/pages/${page.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(page),
-    })
+    const res = await strapiAxios()
+      .put(`/pages/${page.id}`, page)
+      .catch((err) => console.log(err))
 
-    if (res.ok) {
-      console.log('success')
-    } else {
-      console.log('fail')
-    }
+    // TODO Succcess Notification
   }
 
   const changeTheme = async (slug) => {

@@ -8,26 +8,16 @@ import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import scrollbar from './scrollbar'
 import { API_URL } from '@/config/index'
 import { v4 as uuidv4 } from 'uuid'
+import { strapiAxios } from '@/utils/axios'
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
   console.log(page)
 
   const handleSubmit = async () => {
-    let btns = page.Button
-    const res = await fetch(`${API_URL}/pages/${page.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ Button: btns }),
-    })
-
-    if (res.ok) {
+    const res = await strapiAxios().put(`/pages/${page.id}`, page.Button)
+    if (res.status === 200) {
       console.log('success')
-      console.log(page)
-    } else {
-      console.log('fail')
     }
   }
 
