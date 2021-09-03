@@ -17,6 +17,7 @@ import ThemeList from '@/components/ThemeList/ThemeList'
 import ImageUpload from '@/components/ImageUpload'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
+import { withSession } from 'middlewares/session'
 import { strapiAxios } from '@/utils/axios'
 import { API_URL } from '@/config/index'
 
@@ -217,16 +218,30 @@ export default function Admin({ pageprop, themes }) {
   )
 }
 
-export async function getServerSideProps() {
-  const pageRes = await fetch(`${API_URL}/pages?slug=aston`)
-  const pageData = await pageRes.json()
+export const getServerSideProps = withSession(async ({ req, res }) => {
+  const user = req.session.get('user')
+  if (!user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/login',
+      },
+    }
+  }
 
-  const themeRes = await fetch(`${API_URL}/themes`)
-  const themeData = await themeRes.json()
+  console.log('SUCCESS')
+
+  const pageData = await strapiAxios()
+    .get('/pages?slug=aston')
+    .then((res) => res.data)
+
+  const themeData = await strapiAxios()
+    .get('themes')
+    .then((res) => res.data)
 
   if (!pageData || !themeData) {
     return {
-      notFound: true,
+      props: {},
     }
   }
 
@@ -236,4 +251,4 @@ export async function getServerSideProps() {
       themes: themeData,
     },
   }
-}
+})

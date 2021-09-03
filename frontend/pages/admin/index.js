@@ -8,6 +8,7 @@ import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import scrollbar from './scrollbar'
 import { API_URL } from '@/config/index'
 import { v4 as uuidv4 } from 'uuid'
+import { withSession } from 'middlewares/session'
 import { strapiAxios } from '@/utils/axios'
 
 export default function Admin({ pageprop }) {
@@ -85,19 +86,32 @@ export default function Admin({ pageprop }) {
   )
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`${API_URL}/pages?slug=aston`)
-  const data = await res.json()
-
-  if (!data) {
+export const getServerSideProps = withSession(async ({ req, res }) => {
+  const user = req.session.get('user')
+  if (!user) {
     return {
-      notFound: true,
+      redirect: {
+        permanent: false,
+        destination: '/login',
+      },
+    }
+  }
+
+  const pageData = await strapiAxios()
+    .get('/pages?slug=aston')
+    .then((res) => res.data)
+
+  if (!pageData) {
+    return {
+      props: {
+        pageprop: {},
+      },
     }
   }
 
   return {
     props: {
-      pageprop: data[0],
+      pageprop: pageData[0],
     },
   }
-}
+})
