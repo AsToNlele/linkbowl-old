@@ -16,7 +16,7 @@ export default function Admin({ pageprop }) {
   console.log(page)
 
   const handleSubmit = async () => {
-    const res = await strapiAxios().put(`/pages/${page.id}`, page.Button)
+    const res = await strapiAxios().put(`/pages/${page.id}`, {Button: page.Button})
     if (res.status === 200) {
       console.log('success')
     }
