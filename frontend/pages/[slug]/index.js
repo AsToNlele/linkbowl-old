@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Container, Image, Text, Button, Link, color } from '@chakra-ui/react'
 import Display from '@/components/Display'
 import { API_URL } from '@/config/index'
-import { strapiAxios } from '@/utils/axios'
+import { strapiAxios } from '@/utils/strapi'
 
 export default function Page({ page }) {
   const { theme } = page

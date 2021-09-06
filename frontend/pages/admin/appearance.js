@@ -18,7 +18,7 @@ import ImageUpload from '@/components/ImageUpload'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import { withSession } from 'middlewares/session'
-import { strapiAxios } from '@/utils/axios'
+import { strapiAxios } from '@/utils/strapi'
 import { API_URL } from '@/config/index'
 
 export default function Admin({ pageprop, themes }) {

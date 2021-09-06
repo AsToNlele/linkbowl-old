@@ -9,7 +9,7 @@ import scrollbar from '@/components/scrollbar'
 import { API_URL } from '@/config/index'
 import { v4 as uuidv4 } from 'uuid'
 import { withSession } from 'middlewares/session'
-import { strapiAxios } from '@/utils/axios'
+import { strapiAxios } from '@/utils/strapi'
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)

@@ -1,6 +1,6 @@
 import nc from 'next-connect'
 import { sessionMiddleware } from '@/middlewares/session'
-import { strapiAxios } from '@/utils/axios'
+import { strapiAxios } from '@/utils/strapi'
 
 export default nc()
   .use(sessionMiddleware)

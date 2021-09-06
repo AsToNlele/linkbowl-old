@@ -1,7 +1,4 @@
-import { useState,useRef, createRef } from 'react'
-import { Button } from '@chakra-ui/react'
-import { API_URL } from '@/config/index'
-import { strapiAxios } from '@/utils/axios'
+import { strapiAxios } from '@/utils/strapi'
 
 const ImageUpload = ({ pageId, imageUploaded }) => {
 
