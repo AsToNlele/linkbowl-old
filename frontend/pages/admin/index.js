@@ -1,4 +1,12 @@
-import { Button, Container, Flex, Box, Grid } from '@chakra-ui/react'
+import {
+  Button,
+  Container,
+  Flex,
+  Box,
+  Grid,
+  Spinner,
+  useToast,
+} from '@chakra-ui/react'
 import AdminNavbar from '@/components/Layout/AdminNavbar'
 import { useState } from 'react'
 import Display from '@/components/Display'
@@ -6,19 +14,41 @@ import LinkButtonList from '@/components/LinkButton/LinkButtonList'
 import { DeviceFrameset } from 'react-device-frameset'
 import 'react-device-frameset/lib/css/marvel-devices.min.css'
 import scrollbar from '@/components/scrollbar'
-import { API_URL } from '@/config/index'
 import { v4 as uuidv4 } from 'uuid'
 import { withSession } from 'middlewares/session'
 import { strapiAxios } from '@/utils/strapi'
 
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
+  const [isLoading, setIsLoading] = useState(false)
   console.log(page)
 
+  const toast = useToast()
+
   const handleSubmit = async () => {
-    const res = await strapiAxios().put(`/pages/${page.id}`, {Button: page.Button})
+    setIsLoading(true)
+    const res = await strapiAxios().put(`/pages/${page.id}`, {
+      Button: page.Button,
+    })
     if (res.status === 200) {
       console.log('success')
+      setIsLoading(false)
+      toast({
+        title: 'Saved Successfully!',
+        status: 'success',
+        position: 'top-right',
+        duration: 5000,
+        isClosable: true,
+      })
+    } else {
+      setIsLoading(false)
+      toast({
+        title: 'Failed to Save!',
+        status: 'error',
+        position: 'top-right',
+        duration: 5000,
+        isClosable: true,
+      })
     }
   }
 
@@ -60,8 +90,12 @@ export default function Admin({ pageprop }) {
               <Button colorScheme='purple' onClick={addLink}>
                 Add New Link
               </Button>
-              <Button colorScheme='green' onClick={handleSubmit}>
-                Save
+              <Button
+                colorScheme='green'
+                onClick={handleSubmit}
+                isDisabled={isLoading}
+              >
+                {isLoading ? <Spinner /> : 'Save'}
               </Button>
             </Grid>
             <LinkButtonList buttons={page.Button} onChange={changeButtons} />

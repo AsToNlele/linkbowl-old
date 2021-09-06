@@ -9,6 +9,8 @@ import {
   Textarea,
   Image,
   Grid,
+  Spinner,
+  useToast,
 } from '@chakra-ui/react'
 import AdminNavbar from '@/components/Layout/AdminNavbar'
 import { useState, useEffect, useRef } from 'react'
@@ -32,10 +34,14 @@ export default function Admin({ pageprop, themes }) {
     id: pageprop.id,
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
   console.log(page)
   console.log(themes)
 
   const initialRender = useRef(true)
+
+  const toast = useToast()
 
   useEffect(() => {
     if (initialRender.current) {
@@ -68,11 +74,31 @@ export default function Admin({ pageprop, themes }) {
   }
 
   const handleSubmit = async () => {
+    setIsLoading(true)
     const res = await strapiAxios()
       .put(`/pages/${page.id}`, page)
       .catch((err) => console.log(err))
 
     // TODO Succcess Notification
+    if (res.status === 200) {
+      setIsLoading(false)
+      toast({
+        title: 'Saved Successfully!',
+        status: 'success',
+        position: 'top-right',
+        duration: 5000,
+        isClosable: true,
+      })
+    } else {
+      setIsLoading(false)
+      toast({
+        title: 'Failed to Save!',
+        status: 'error',
+        position: 'top-right',
+        duration: 5000,
+        isClosable: true,
+      })
+    }
   }
 
   const changeTheme = async (slug) => {
@@ -166,8 +192,13 @@ export default function Admin({ pageprop, themes }) {
                 placeholder='Bio'
                 mt='4'
               />
-              <Button colorScheme='green' onClick={handleSubmit} mt='4'>
-                Save
+              <Button
+                colorScheme='green'
+                onClick={handleSubmit}
+                mt='4'
+                isDisabled={isLoading}
+              >
+                {isLoading ? <Spinner /> : 'Save'}
               </Button>
             </Box>
             <Text
