@@ -25,7 +25,7 @@ export default function Page({ page }) {
 }
 
 export async function getServerSideProps({ query: { slug } }) {
-  const data = await strapiAxios
+  const data = await strapiAxios()
     .get(`/pages?slug=${slug}`)
     .then((res) => res.data)
 
