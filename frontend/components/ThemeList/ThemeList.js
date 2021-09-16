@@ -13,7 +13,7 @@ const Theme = ({ data, isCurrent, onClickTheme }) => {
             fallbackSrc='https://via.placeholder.com/240x340'
             padding="0"
             border="1px"
-            borderColor="lightgray"
+            borderColor="#E2E8F0"
             borderRadius='5px'
             src="/thumbnail.jpg"
           />
@@ -30,7 +30,7 @@ const ThemeList = ({ themes, currentTheme, onChange }) => {
   };
   return (
     <>
-      <Wrap spacing="20px">
+      <Wrap spacing="20px" align="center" justify="center">
       {themes.length ? themes?.map((theme) => {
         let curr = false;
         if (theme.slug === currentTheme) curr = true;

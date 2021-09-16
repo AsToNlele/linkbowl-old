@@ -19,5 +19,4 @@ export default {
 	'&::-webkit-scrollbar-thumb:hover': {
 	  background: '#555',
 	},
-	borderRight: '1px solid gray',
 }
