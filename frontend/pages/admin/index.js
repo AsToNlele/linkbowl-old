@@ -101,7 +101,6 @@ export default function Admin({ pageprop }) {
             gridRowEnd={{ md: 'row5' }}
             gridColumn={{ md: 'col1-start' }}
             background='white'
-            display='flex'
             flexDirection='column'
             alignItems='center'
             justifyContent='space-between'
