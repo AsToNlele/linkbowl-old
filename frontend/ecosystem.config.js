@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'linktree-frontend',
+      name: 'linkbowl-frontend',
       script: 'npm',
       args: 'start',
       env: {

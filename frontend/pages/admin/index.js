@@ -112,6 +112,7 @@ export default function Admin({ pageprop }) {
                 borderRadius='full'
                 boxSize='64px'
                 objectFit='cover'
+                src="/logo.png"
                 fallbackSrc='https://via.placeholder.com/64x64'
                 p='2'
               />
@@ -259,7 +260,7 @@ export default function Admin({ pageprop }) {
               whiteSpace='nowrap'
               flex='0'
             >
-              My Linktree:
+              My Linkbowl:
             </Text>
             <Box flex='1' minWidth='0' whiteSpace='nowrap'>
               <a href='/aston'>
