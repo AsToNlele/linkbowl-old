@@ -22,7 +22,9 @@ const LoginPage = () => {
 
   const toast = useToast()
 
-  const onLogin = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
     setIsLoading(true)
     const res = await apiAxios().post('/api/login', { login, password })
 
@@ -64,6 +66,7 @@ const LoginPage = () => {
         <Text fontSize='2xl' fontWeight='bold'>
           Linkbowl Login
         </Text>
+        <form onSubmit={handleSubmit}>
         <FormControl id='login' isRequired>
           <FormLabel>Username/Email</FormLabel>
           <Input
@@ -82,12 +85,13 @@ const LoginPage = () => {
         </FormControl>
         <Button
           colorScheme='green'
-          onClick={onLogin}
           mt='4'
           isDisabled={isLoading}
+          type="submit"
         >
           {isLoading ? <Spinner /> : 'Login'}
         </Button>
+        </form>
       </Box>
     </Container>
   )
