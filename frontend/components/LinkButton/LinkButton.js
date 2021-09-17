@@ -111,13 +111,13 @@ const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, 
       ref={preview}
       style={{ opacity }}
       data-handler-id={handlerId}
-      boxShadow='0px 2px 0px 0px #acb5bf'
+      boxShadow='0px 2px 0px 0px #d7dce1'
     >
       <Box
         p='2'
         display='flex'
         borderRight='1px solid'
-        borderColor='customgray'
+        borderColor='#d7dce1'
         ref={ref}
         style={handleStyle}
         alignItems='center'
