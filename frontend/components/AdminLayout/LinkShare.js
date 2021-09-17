@@ -1,4 +1,5 @@
-import { Box, Text, Button } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
+import ShareButton from '@/components/ShareButton'
 function LinkShare() {
   return (
     <Box
@@ -35,22 +36,7 @@ function LinkShare() {
         </a>
       </Box>
 
-      <Button
-        borderRadius='md'
-        fontSize='sm'
-        fontWeight='light'
-        padding='0'
-        height='32px'
-        pl='4'
-        pr='4'
-        bg='transparent'
-        border='1px solid lightgray'
-        _hover={{ background: 'lightgray' }}
-        color='#000'
-        ml='2'
-      >
-        Share
-      </Button>
+      <ShareButton url={"https://linkbowl.aston.dev/aston"} />
     </Box>
   )
 }

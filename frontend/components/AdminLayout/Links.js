@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Container, Spinner } from '@chakra-ui/react'
 import LinkButtonList from '@/components/LinkButton/LinkButtonList'
-import scrollbar from '../scrollbar'
+import scrollbar from '@/components/scrollbar'
 
 function Links({ onAddLink, onSubmit, onChangeButtons, isLoading, page }) {
   const addLink = () => {
