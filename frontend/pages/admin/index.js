@@ -16,7 +16,6 @@ import Links from '@/components/AdminLayout/Links'
 export default function Admin({ pageprop }) {
   const [page, setPage] = useState(pageprop)
   const [isLoading, setIsLoading] = useState(false)
-  console.log(page)
 
   const toast = useToast()
 
@@ -26,7 +25,6 @@ export default function Admin({ pageprop }) {
       Button: page.Button,
     })
     if (res.status === 200) {
-      console.log('success')
       setIsLoading(false)
       toast({
         title: 'Saved Successfully!',

@@ -1,8 +1,4 @@
-import {
-  Box,
-  Grid,
-  useToast,
-} from '@chakra-ui/react'
+import { Box, Grid, useToast } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
 import { withSession } from 'middlewares/session'
 import { strapiAxios } from '@/utils/strapi'
@@ -28,9 +24,6 @@ export default function Admin({ pageprop, themes }) {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  console.log(page)
-  console.log(themes)
-
   const initialRender = useRef(true)
 
   const toast = useToast()
@@ -46,7 +39,6 @@ export default function Admin({ pageprop, themes }) {
     const data = await strapiAxios()
       .get(`/pages/${page.id}`)
       .then((res) => res.data)
-    console.log(data)
     setPage({ ...page, photo: data.photo })
   }
 
@@ -54,7 +46,6 @@ export default function Admin({ pageprop, themes }) {
     const data = await strapiAxios()
       .delete(`/upload/files/${page.photo.id}`)
       .then((res) => res.data)
-    console.log(data)
     if (data) {
       handleImageUploaded()
     }
@@ -153,8 +144,6 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
       },
     }
   }
-
-  console.log('SUCCESS')
 
   const pageData = await strapiAxios()
     .get('/pages?slug=aston')

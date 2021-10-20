@@ -28,7 +28,6 @@ const LoginPage = () => {
     setIsLoading(true)
     const res = await apiAxios().post('/api/login', { login, password })
 
-    console.log(res)
     if (res.status === 200) {
       setIsLoading(false)
       toast({
@@ -41,7 +40,7 @@ const LoginPage = () => {
       router.push('/admin/appearance')
     } else {
       setIsLoading(false)
-      if(res.status === 401){
+      if (res.status === 401) {
         toast({
           title: 'Wrong Login!',
           status: 'error',
@@ -67,30 +66,30 @@ const LoginPage = () => {
           Linkbowl Login
         </Text>
         <form onSubmit={handleSubmit}>
-        <FormControl id='login' isRequired>
-          <FormLabel>Username/Email</FormLabel>
-          <Input
-            type='text'
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-          />
-        </FormControl>
-        <FormControl id='password' isRequired>
-          <FormLabel>Password</FormLabel>
-          <Input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </FormControl>
-        <Button
-          colorScheme='green'
-          mt='4'
-          isDisabled={isLoading}
-          type="submit"
-        >
-          {isLoading ? <Spinner /> : 'Login'}
-        </Button>
+          <FormControl id='login' isRequired>
+            <FormLabel>Username/Email</FormLabel>
+            <Input
+              type='text'
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+            />
+          </FormControl>
+          <FormControl id='password' isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          <Button
+            colorScheme='green'
+            mt='4'
+            isDisabled={isLoading}
+            type='submit'
+          >
+            {isLoading ? <Spinner /> : 'Login'}
+          </Button>
         </form>
       </Box>
     </Container>

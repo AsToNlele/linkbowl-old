@@ -11,19 +11,17 @@ const LinkButtonList = ({ buttons, onChange }) => {
       onChange(buttonsCopy)
     }
 
-    const handleDelete = key => {
+    const handleDelete = (key) => {
       let btns = buttons
-      btns = btns.filter(btn => btn.id !== key)
-      console.log(key)
-      console.log(btns)
+      btns = btns.filter((btn) => btn.id !== key)
       handleButtonChange(btns)
     }
 
-    const handleSwitchChange = key => {
+    const handleSwitchChange = (key) => {
       let btns = buttons
-      btns.map(btn => {
-        if(btn.id === key){
-        btn.Enabled = !btn.Enabled
+      btns.map((btn) => {
+        if (btn.id === key) {
+          btn.Enabled = !btn.Enabled
         }
       })
       handleButtonChange(btns)
@@ -40,26 +38,21 @@ const LinkButtonList = ({ buttons, onChange }) => {
           ],
         })
 
-        // console.log(buttonsCopy)
         handleButtonChange(buttonsCopy)
       },
       [buttons]
     )
 
-
     const handleContentChange = (obj) => {
-      let btns = buttons;
-      // console.log(btns)
-      btns.map(btn => {
-        if(btn.id === obj.key){
+      let btns = buttons
+      btns.map((btn) => {
+        if (btn.id === obj.key) {
           btn.Text = obj.text
           btn.Url = obj.url
         }
       })
       handleButtonChange(btns)
     }
-
-    
 
     return (
       <Box w='100%'>

@@ -6,7 +6,6 @@ import { strapiAxios } from '@/utils/strapi'
 
 export default function Page({ page }) {
   const { theme } = page
-  console.log(page)
   return (
     <div>
       <style jsx global>{`

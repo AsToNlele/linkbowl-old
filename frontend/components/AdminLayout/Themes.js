@@ -10,7 +10,7 @@ import {
   Spinner,
 } from '@chakra-ui/react'
 import ThemeList from '@/components/ThemeList/ThemeList'
-import scrollbar from '@/components/scrollbar'
+import scrollbar from '@/utils/scrollbar'
 import { API_URL } from '@/config'
 import ImageUpload from '@/components/ImageUpload'
 

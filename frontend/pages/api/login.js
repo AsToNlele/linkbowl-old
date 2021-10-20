@@ -14,14 +14,12 @@ export default nc()
           password: password,
         })
         .then((res) => {
-          console.log(res.data)
           return res.data
         })
         .then((data) => ({
           ...data.user,
           strapiToken: data.jwt,
         }))
-
 
       if (!user.confirmed) {
         return res.status(401).json({
@@ -30,13 +28,10 @@ export default nc()
         })
       }
 
-      console.log(user)
-
       req.session.set('user', user)
       await req.session.save()
       res.json(user)
     } catch (error) {
-	    console.log(error)
       const { response: fetchResponse } = error
       if (fetchResponse) {
         return res

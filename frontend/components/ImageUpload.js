@@ -9,8 +9,6 @@ const ImageUpload = ({ pageId, imageUploaded }) => {
 
   const inputFileRef = createRef()
   const handleImageUpload = async (e) => {
-    console.log(e.target.files[0])
-
     let image = e.target.files[0]
 
     const formData = new FormData()
