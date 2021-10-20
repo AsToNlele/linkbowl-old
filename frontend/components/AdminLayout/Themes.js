@@ -49,6 +49,7 @@ function Themes({
       gridRowEnd='row5'
       background='lightgray'
       overflowY={{ base: '', md: 'scroll' }}
+      overflowX='hidden'
       css={scrollbar}
     >
       <Container centerContent maxW='container.sm'>

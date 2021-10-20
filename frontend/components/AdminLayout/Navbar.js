@@ -12,28 +12,31 @@ function Navbar() {
       px='5'
     >
       <Link href='/admin'>
-        <Box
-          mr='8'
-          cursor='pointer'
-          h='100%'
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-        >
-          <Text>Links</Text>
-        </Box>
+        <a>
+          <Box
+            mr='8'
+            cursor='pointer'
+            h='100%'
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+          >
+            <Text>Links</Text>
+          </Box>
+        </a>
       </Link>
       <Link href='/admin/appearance'>
-        <Box
-          mr='8'
-          cursor='pointer'
-          h='100%'
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-        >
-          <Text>Appearance</Text>
-        </Box>
+        <a>
+          <Box
+            mr='8'
+            h='100%'
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+          >
+            <Text>Appearance</Text>
+          </Box>
+        </a>
       </Link>
     </Box>
   )
