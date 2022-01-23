@@ -11,6 +11,7 @@ import {
   Text,
   Spinner,
   useToast,
+  Flex,
 } from '@chakra-ui/react'
 
 const RegisterPage = () => {
@@ -95,14 +96,24 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
-          <Button
-            colorScheme='green'
-            mt='4'
-            isDisabled={isLoading}
-            type='submit'
-          >
-            {isLoading ? <Spinner /> : 'Login'}
-          </Button>
+          <Flex justifyContent='space-between' alignItems='flex-start'>
+            <Button
+              colorScheme='green'
+              mt='4'
+              isDisabled={isLoading}
+              type='submit'
+            >
+              {isLoading ? <Spinner /> : 'Register'}
+            </Button>
+            <Button
+              colorScheme='blue'
+              mt='4'
+              ml='4'
+              onClick={() => router.push('/')}
+            >
+              Back Home
+            </Button>
+          </Flex>
         </form>
       </Box>
     </Container>
