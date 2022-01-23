@@ -62,7 +62,7 @@ export const Navbar = ({ links }) => {
             <Text mr='5'>Log in</Text>
           </a>
         </Link>
-        <Link href='/admin'>
+        <Link href='/register'>
           <Button
             borderRadius='lg'
             fontSize='sm'
