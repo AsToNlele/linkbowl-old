@@ -5,12 +5,13 @@ import { API_URL } from '@/config/index'
 import { strapiAxios } from '@/utils/strapi'
 
 export default function Page({ page }) {
-  const { theme } = page
   return (
     <div>
       <style jsx global>{`
         body {
-          background: ${theme.backgroundColor} !important;
+          background: ${page?.theme
+            ? page.theme.backgroundColor
+            : 'white'} !important;
         }
       `}</style>
       <Head>
