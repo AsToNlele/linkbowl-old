@@ -12,7 +12,17 @@ const ItemTypes = {
   CARD: 'card',
 }
 
-const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, onDelete, onSwitch }) => {
+const LinkButton = ({
+  id,
+  text,
+  url,
+  index,
+  enabled,
+  moveCard,
+  onContentChange,
+  onDelete,
+  onSwitch,
+}) => {
   const ref = useRef(null)
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -77,7 +87,11 @@ const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, 
   const inputURLRef = createRef()
 
   const handleChange = () => {
-    onContentChange({ key: id,text: inputTitleRef.current.value, url: inputURLRef.current.value})
+    onContentChange({
+      key: id,
+      text: inputTitleRef.current.value,
+      url: inputURLRef.current.value,
+    })
   }
 
   const flipSwitch = () => {
@@ -127,7 +141,9 @@ const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, 
       </Box>
       <Box p='4' width='100%'>
         <Box fontWeight='bold'>
-          <Text display={showTitle ? 'none' : 'inline-block'}>{text != '' ? text : 'Title'}</Text>
+          <Text display={showTitle ? 'none' : 'inline-block'}>
+            {text != '' ? text : 'Title'}
+          </Text>
           <Input
             display={!showTitle ? 'none' : 'inline'}
             variant='unstyled'
@@ -137,7 +153,7 @@ const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, 
             onBlur={() => setShowTitle(false)}
             py='2'
             fontWeight='bold'
-            name="text"
+            name='text'
             onChange={handleChange}
           />
           <IconButton
@@ -148,7 +164,9 @@ const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, 
           />
         </Box>
         <Box>
-          <Text display={showURL ? 'none' : 'inline'}>{url != '' ? url : 'Link'}</Text>
+          <Text display={showURL ? 'none' : 'inline'}>
+            {url != '' ? url : 'Link'}
+          </Text>
           <IconButton
             onClick={() => setShowURL(true)}
             variant='unstyled'
@@ -164,15 +182,27 @@ const LinkButton = ({ id, text, url, index, enabled, moveCard, onContentChange, 
             w='100%'
             onBlur={() => setShowURL(false)}
             py='2'
-            name="url"
+            name='url'
             onChange={handleChange}
           />
         </Box>
       </Box>
 
-
-  <Box display="flex" flexDirection="column" p="3" alignItems="center" justifyContent="space-between"><Switch colorScheme="green" onChange={flipSwitch} isChecked={enabled} /><IconButton onClick={deleteButton} variant="unstyled" icon={<DeleteIcon color="red" />} /></Box>
-</Box>
+      <Box
+        display='flex'
+        flexDirection='column'
+        p='3'
+        alignItems='center'
+        justifyContent='space-between'
+      >
+        <Switch colorScheme='green' onChange={flipSwitch} isChecked={enabled} />
+        <IconButton
+          onClick={deleteButton}
+          variant='unstyled'
+          icon={<DeleteIcon color='red' />}
+        />
+      </Box>
+    </Box>
   )
 }
 

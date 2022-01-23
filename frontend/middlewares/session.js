@@ -1,4 +1,4 @@
-import { withIronSession, ironSession } from 'next-iron-session';
+import { withIronSession, ironSession } from 'next-iron-session'
 
 const sessionConfig = {
   password: process.env.SECRET_COOKIE_PASSWORD,
@@ -6,12 +6,12 @@ const sessionConfig = {
   cookieOptions: {
     secure: false,
   },
-};
+}
 
 console.log(sessionConfig)
 
-export const sessionMiddleware = ironSession(sessionConfig);
+export const sessionMiddleware = ironSession(sessionConfig)
 
 export function withSession(handler) {
-  return withIronSession(handler, sessionConfig);
+  return withIronSession(handler, sessionConfig)
 }
