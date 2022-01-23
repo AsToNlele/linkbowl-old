@@ -131,7 +131,7 @@ function Themes({
         >
           <ThemeList
             themes={themes}
-            currentTheme={page.theme?.slug ? page.currentTheme : themes[0]}
+            currentTheme={page?.theme ? page.theme : themes[0]}
             onChange={handleChangeTheme}
           />
         </Box>

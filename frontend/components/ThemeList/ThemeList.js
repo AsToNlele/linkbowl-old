@@ -46,7 +46,7 @@ const ThemeList = ({ themes, currentTheme, onChange }) => {
         {themes.length
           ? themes?.map((theme) => {
               let curr = false
-              if (theme.slug === currentTheme) curr = true
+              if (theme.slug === currentTheme.slug) curr = true
               return (
                 <WrapItem key={theme.slug}>
                   <Theme
