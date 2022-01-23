@@ -68,7 +68,7 @@ const RegisterPage = () => {
     <Container centerContent>
       <Box borderRadius='lg' backgroundColor='lightgray' p='14' mt='10'>
         <Text fontSize='2xl' fontWeight='bold'>
-          Linkbowl Login
+          Linkbowl Register
         </Text>
         <form onSubmit={handleSubmit}>
           <FormControl id='login' isRequired>
