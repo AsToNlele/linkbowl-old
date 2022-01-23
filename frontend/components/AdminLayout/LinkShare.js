@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react'
 import ShareButton from '@/components/ShareButton'
-function LinkShare() {
+const LinkShare = ({ slug }) => {
   return (
     <Box
       gridColumn={{ base: '', md: 'col3-start' }}
@@ -23,7 +23,7 @@ function LinkShare() {
         My Linkbowl:
       </Text>
       <Box flex='1' minWidth='0' whiteSpace='nowrap'>
-        <a href='/aston'>
+        <a href={`/${slug}`}>
           <Text
             fontSize='xs'
             textDecoration='underline'
@@ -31,12 +31,12 @@ function LinkShare() {
             overflow='hidden'
             whiteSpace='nowrap'
           >
-            https://linkbowl.aston.dev/aston
+            https://linkbowl.aston.dev/{slug}
           </Text>
         </a>
       </Box>
 
-      <ShareButton url={"https://linkbowl.aston.dev/aston"} />
+      <ShareButton url={`https://linkbowl.aston.dev/${slug}`} />
     </Box>
   )
 }

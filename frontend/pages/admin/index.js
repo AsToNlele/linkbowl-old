@@ -13,7 +13,7 @@ import MobileNavbar from '@/components/AdminLayout/MobileNavbar'
 import Device from '@/components/AdminLayout/Device'
 import Links from '@/components/AdminLayout/Links'
 
-export default function Admin({ pageprop }) {
+export default function Admin({ pageprop, slug }) {
   const [page, setPage] = useState(pageprop)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -21,8 +21,12 @@ export default function Admin({ pageprop }) {
 
   const handleSubmit = async () => {
     setIsLoading(true)
+    let btn = page.Button
+    btn.forEach((item) => {
+      delete item.id
+    })
     const res = await strapiAxios().put(`/pages/${page.id}`, {
-      Button: page.Button,
+      Button: btn,
     })
     if (res.status === 200) {
       setIsLoading(false)
@@ -53,6 +57,7 @@ export default function Admin({ pageprop }) {
     let btns = page.Button
     let btn = {
       Text: 'New Title',
+      Enabled: true,
       Url: 'https://linkbowl.aston.dev',
       id: uuidv4(),
     }
@@ -96,7 +101,7 @@ export default function Admin({ pageprop }) {
             page={page}
             onChangeButtons={changeButtons}
           />
-          <LinkShare />
+          <LinkShare slug={slug} />
           <Device page={page} />
           <MobileNavbar />
         </Grid>
@@ -117,7 +122,7 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
   }
 
   const pageData = await strapiAxios()
-    .get('/pages?slug=aston')
+    .get(`/pages?slug=${user.username}`)
     .then((res) => res.data)
 
   if (!pageData) {
@@ -131,6 +136,7 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
   return {
     props: {
       pageprop: pageData[0],
+      slug: user.username,
     },
   }
 })

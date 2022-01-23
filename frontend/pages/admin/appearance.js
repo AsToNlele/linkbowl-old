@@ -11,7 +11,7 @@ import Device from '@/components/AdminLayout/Device'
 import MobileNavbar from '@/components/AdminLayout/MobileNavbar'
 import Themes from '@/components/AdminLayout/Themes'
 
-export default function Admin({ pageprop, themes }) {
+export default function Admin({ pageprop, themes, slug }) {
   const [page, setPage] = useState({
     photo: pageprop.photo,
     slug: pageprop.slug,
@@ -125,7 +125,7 @@ export default function Admin({ pageprop, themes }) {
             themes={themes}
             onChangeTheme={handleChangeTheme}
           />
-          <LinkShare />
+          <LinkShare slug={slug} />
           <Device page={page} />
           <MobileNavbar />
         </Grid>
@@ -146,7 +146,7 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
   }
 
   const pageData = await strapiAxios()
-    .get('/pages?slug=aston')
+    .get(`/pages?slug=${user.username}`)
     .then((res) => res.data)
 
   const themeData = await strapiAxios()
@@ -163,6 +163,7 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
     props: {
       pageprop: pageData[0],
       themes: themeData,
+      slug: user.username,
     },
   }
 })

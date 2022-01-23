@@ -47,7 +47,9 @@ function Device({ page }) {
         <DeviceFrameset device='iPhone X' color='gold'>
           <Container
             centerContent
-            backgroundColor={page.theme.backgroundColor}
+            backgroundColor={
+              page.theme?.backgroundColor ? page.theme.backgroundColor : 'white'
+            }
             height='100%'
             width='100%'
           >
